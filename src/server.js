@@ -18,6 +18,16 @@ io.on('connection', (socket) => {
     io.emit('mensaje', data);
   });
 
+
+  //Evento para Nuevo Producto
+  socket.on('producto_nuevo', (producto) => {
+    console.log('Producto nuevo: ', producto);
+
+    //Reenvia a todos los clientes conectados
+    io.emit('producto_nuevo', producto);
+
+  });
+
   socket.on('disconnect', () => {
     console.log('Cliente desconectado ', socket.id);
   });
